@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore education, programs, and admissions at Vignan University.">
+  <title>Vignan University | Learn, Explore, Create</title>
+  <style>
+    :root {
+      --ink: #172554;
+      --blue: #2563eb;
+      --cyan: #22d3ee;
+      --yellow: #facc15;
+      --pink: #fb7185;
+      --paper: #fffdf7;
+      --muted: #526078;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      line-height: 1.65;
+    }
+    a { color: inherit; }
+    .container { width: min(1120px, 90%); margin: auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      color: white;
+      background: var(--ink);
+      box-shadow: 0 4px 18px #17255425;
+    }
+    .nav {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand { font-size: 1.2rem; font-weight: 900; }
+    .brand span { color: var(--yellow); }
+    nav { display: flex; gap: 22px; }
+    nav a { text-decoration: none; font-weight: 700; }
+    nav a:hover { color: var(--cyan); }
+    .menu-button {
+      display: none;
+      color: white;
+      background: transparent;
+      border: 1px solid white;
+      border-radius: 8px;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    .hero {
+      min-height: 650px;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      display: grid;
+      place-items: start center;
+      padding: 75px 20px 30px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 15% 25%, #facc1570 0 7%, transparent 7.5%),
+        radial-gradient(circle at 85% 22%, #fb718555 0 8%, transparent 8.5%),
+        linear-gradient(135deg, #e0f7ff, #fff4d6 58%, #ffe4ed);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 430px;
+      height: 430px;
+      left: 50%;
+      top: 220px;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background: #ffffff65;
+      filter: blur(5px);
+    }
+    .hero-content { position: relative; z-index: 2; }
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      color: #854d0e;
+      background: #fef08a;
+      font-size: .85rem;
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      margin: 14px 0 8px;
+      font-size: clamp(2.4rem, 6vw, 4.7rem);
+      line-height: 1.05;
+    }
+    .hero h1 span { color: var(--blue); }
+    .hero p {
+      max-width: 650px;
+      margin: 14px auto 22px;
+      color: #344563;
+      font-size: 1.1rem;
+    }
+    .button {
+      display: inline-block;
+      padding: 12px 21px;
+      border-radius: 12px;
+      color: white;
+      background: var(--blue);
+      box-shadow: 0 5px 0 #1e40af;
+      font-weight: 900;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .button:hover { transform: translateY(3px); box-shadow: 0 2px 0 #1e40af; }
+
+    /* Centered, original robot illustration */
+    .robot-scene {
+      position: absolute;
+      left: 50%;
+      bottom: 4px;
+      z-index: 1;
+      width: min(400px, 88vw);
+      transform: translateX(-50%);
+      filter: drop-shadow(0 22px 18px #17255428);
+      animation: float 4s ease-in-out infinite;
+    }
+    .robot-scene svg { display: block; width: 100%; height: auto; }
+    @keyframes float {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, -10px); }
+    }
+
+    section { padding: 68px 0; }
+    section:nth-of-type(even) { background: #f0f9ff; }
+    .section-heading { max-width: 760px; margin: 0 auto 32px; text-align: center; }
+    .section-heading h2 { margin: 0 0 8px; font-size: clamp(1.8rem, 4vw, 2.5rem); }
+    .section-heading p { color: var(--muted); }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      padding: 23px;
+      border: 2px solid #e4eaf3;
+      border-radius: 18px;
+      background: white;
+      box-shadow: 0 8px 20px #1725540c;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 14px 25px #17255416; }
+    .card h3 { margin-top: 0; color: var(--blue); }
+    .icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 12px;
+      border-radius: 14px;
+      background: #cffafe;
+      font-size: 1.5rem;
+    }
+    .steps { padding-left: 24px; }
+    .steps li { padding: 5px 0; }
+    .notice {
+      margin-top: 22px;
+      padding: 14px 18px;
+      border-left: 5px solid var(--yellow);
+      border-radius: 8px;
+      background: #fef9c3;
+    }
+    form { max-width: 620px; margin: auto; }
+    label { display: block; margin: 14px 0 5px; font-weight: 800; }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #dbe4f0;
+      border-radius: 9px;
+      background: white;
+      font: inherit;
+    }
+    textarea { min-height: 110px; resize: vertical; }
+    input:focus, select:focus, textarea:focus {
+      outline: 3px solid #22d3ee66;
+      border-color: var(--blue);
+    }
+    button[type="submit"] {
+      margin-top: 16px;
+      padding: 12px 18px;
+      border: 0;
+      border-radius: 10px;
+      color: white;
+      background: var(--blue);
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    #form-message { color: #17633a; }
+    footer { padding: 25px 0; color: white; background: var(--ink); text-align: center; }
+    footer p { margin: 0 0 5px; }
+
+    @media (max-width: 700px) {
+      .menu-button { display: block; }
+      nav { display: none; flex-direction: column; width: 100%; padding: 0 0 15px; }
+      nav.open { display: flex; }
+      .nav { flex-wrap: wrap; padding: 12px 0; }
+      .hero { min-height: 610px; padding-top: 58px; }
+      .robot-scene { width: min(340px, 90vw); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">Vignan <span>University</span></div>
+      <button class="menu-button" id="menu-button" aria-expanded="false" aria-controls="main-nav">
+        Menu
+      </button>
+      <nav id="main-nav" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#admissions">Admissions</a>
+        <a href="#campus">Campus</a>
+        <a href="#contact">Enquiry</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content container">
+        <span class="eyebrow">Curiosity starts here</span>
+        <h1>Think big.<br><span>Learn brighter.</span></h1>
+        <p>Explore academic opportunities, discover your interests, and take your next step at Vignan University.</p>
+        <a class="button" href="#programs">Explore programs ↓</a>
+      </div>
+
+      <div class="robot-scene" aria-hidden="true">
+        <svg viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="body" x1="0" y1="0" x2="1" y2="1">
+              <stop stop-color="#fff"/>
+              <stop offset="1" stop-color="#b9e8ff"/>
+            </linearGradient>
+            <linearGradient id="head" x1="0" y1="0" x2="1" y2="1">
+              <stop stop-color="#60e1f5"/>
+              <stop offset="1" stop-color="#4384f5"/>
+            </linearGradient>
+            <linearGradient id="arm" x1="0" y1="0" x2="1" y2="1">
+              <stop stop-color="#ffd166"/>
+              <stop offset="1" stop-color="#ff9f43"/>
+            </linearGradient>
+          </defs>
+          <!-- Thought bubble -->
+          <circle cx="293" cy="50" r="35" fill="#fff" stroke="#172554" stroke-width="5"/>
+          <circle cx="258" cy="91" r="11" fill="#fff" stroke="#172554" stroke-width="4"/>
+          <circle cx="242" cy="108" r="7" fill="#fff" stroke="#172554" stroke-width="3"/>
+          <path d="M281 49h24m-12-12v24" stroke="#fb7185" stroke-width="6" stroke-linecap="round"/>
+          <!-- Antenna -->
+          <path d="M190 61V39" stroke="#172554" stroke-width="8" stroke-linecap="round"/>
+          <circle cx="190" cy="29" r="13" fill="#facc15" stroke="#172554" stroke-width="5"/>
+          <!-- Head -->
+          <rect x="105" y="58" width="172" height="132" rx="43" fill="url(#head)" stroke="#172554" stroke-width="7"/>
+          <path d="M117 103c16-34 51-46 90-43" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="10" stroke-linecap="round"/>
+          <rect x="135" y="103" width="29" height="34" rx="14" fill="#fff"/>
+          <rect x="218" y="103" width="29" height="34" rx="14" fill="#fff"/>
+          <circle cx="151" cy="120" r="8" fill="#172554"/>
+          <circle cx="234" cy="120" r="8" fill="#172554"/>
+          <path d="M168 151q22 20 45 0" fill="none" stroke="#172554" stroke-width="6" stroke-linecap="round"/>
+          <!-- Neck and body -->
+          <rect x="173" y="184" width="34" height="20" rx="8" fill="#172554"/>
+          <rect x="112" y="198" width="156" height="112" rx="34" fill="url(#body)" stroke="#172554" stroke-width="7"/>
+          <path d="M128 220q12-12 27-12" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round"/>
+          <circle cx="190" cy="250" r="22" fill="#facc15" stroke="#172554" stroke-width="5"/>
+          <path d="M184 250h12m-6-6v12" stroke="#172554" stroke-width="4" stroke-linecap="round"/>
+          <!-- Arms: thinking pose -->
+          <path d="M116 222 82 245l14 36 42-18" fill="none" stroke="url(#arm)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="87" cy="245" r="15" fill="#ffb347" stroke="#172554" stroke-width="5"/>
+          <path d="M266 224l31 22-18 25-35-16" fill="none" stroke="url(#arm)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M278 265q14-31 34-24" fill="none" stroke="#172554" stroke-width="10" stroke-linecap="round"/>
+          <!-- Feet -->
+          <path d="M145 307v22m90-22v22" stroke="#172554" stroke-width="14" stroke-linecap="round"/>
+          <path d="M126 333h39m50 0h39" stroke="#fb7185" stroke-width="18" stroke-linecap="round"/>
+          <!-- Ground shadow -->
+          <ellipse cx="190" cy="352" rx="116" ry="8" fill="#172554" opacity=".12"/>
+        </svg>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container section-heading">
+        <h2>About Vignan</h2>
+        <p>Vignan's Foundation for Science, Technology & Research is a deemed-to-be university. Explore its academic offerings and student services below.</p>
+      </div>
+    </section>
+
+    <section id="programs">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Explore Academic Areas</h2>
+          <p>Program availability and eligibility may vary by academic year.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="icon">⚙️</div>
+            <h3>Engineering & Technology</h3>
+            <p>Explore engineering and technology study options, subject areas, and research opportunities.</p>
+          </article>
+          <article class="card">
+            <div class="icon">📊</div>
+            <h3>Management</h3>
+            <p>Learn about business, management, and related academic pathways.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🔬</div>
+            <h3>Sciences</h3>
+            <p>Discover science programs and opportunities for practical learning and research.</p>
+          </article>
+          <article class="card">
+            <div class="icon">💡</div>
+            <h3>Other Programs</h3>
+            <p>Check the official university program list for additional disciplines and qualifications.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="admissions">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Admissions</h2>
+          <p>Use these general steps as a starting point, then confirm current requirements with the university.</p>
+        </div>
+        <div class="card">
+          <ol class="steps">
+            <li>Choose a program and review its eligibility requirements.</li>
+            <li>Check application dates, entrance requirements, and required documents.</li>
+            <li>Submit an application through the university's official admissions channel.</li>
+            <li>Follow the university's instructions for selection and enrollment.</li>
+          </ol>
+          <div class="notice">Admission dates, fees, and eligibility can change. Refer to the official Vignan University website for current information.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="campus">
+      <div class="container section-heading">
+        <h2>Campus & Student Life</h2>
+        <p>Find out about facilities, clubs, student support, accommodation, and campus activities through the university's official resources.</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Request Information</h2>
+          <p>Send an enquiry to learn more about programs or admissions.</p>
+        </div>
+        <form id="enquiry-form">
+          <label for="name">Your name</label>
+          <input id="name" name="name" autocomplete="name" required>
+
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+
+          <label for="interest">Area of interest</label>
+          <select id="interest" name="interest" required>
+            <option value="">Select an area</option>
+            <option>Engineering & Technology</option>
+            <option>Management</option>
+            <option>Sciences</option>
+            <option>Other</option>
+          </select>
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+
+          <button type="submit">Submit enquiry</button>
+          <p id="form-message" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Vignan University Education Information</p>
+      <small>This informational page is not an official university website.</small>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.getElementById("menu-button");
+    const mainNav = document.getElementById("main-nav");
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = mainNav.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", isOpen);
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.getElementById("enquiry-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      document.getElementById("form-message").textContent =
+        "Thanks! This demo form is not connected to an admissions office.";
+      event.target.reset();
+    });
+  </script>
+</body>
+</html>
